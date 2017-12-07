@@ -1,0 +1,21 @@
+branches:
+  - master
+
+language: node_js
+
+node_js:
+  - "stable"
+
+services:
+  - mongodb
+  - neo4j
+
+before_install:
+  - cd ./api
+
+before_script:
+  - sleep 15
+
+after_succes:
+  - npm run cover
+  - npm run coveralls
