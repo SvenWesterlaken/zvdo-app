@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Meeting = require('../models/meeting');
+const _ = require('lodash');
 
 module.exports = {
 
@@ -14,7 +15,7 @@ module.exports = {
 
   create(req, res, next) {
 
-    if(_.isEmpty(body)) {
+    if(_.isEmpty(req.body)) {
       res.status(422).json({ error: "Body is empty"});
 
       //TODO: lodash function that checks if the format of the meeting is as expected.

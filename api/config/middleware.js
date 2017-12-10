@@ -12,7 +12,7 @@ module.exports = {
   },
 
   preflightHandler(req, res, next) {
-    req.method == 'OPTIONS' ? res.sendStatus(204) : next();
+    'OPTIONS' == req.method ? res.sendStatus(204) : next();
   },
 
   errorHandler(err, req, res, next) {

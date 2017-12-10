@@ -1,0 +1,15 @@
+doctype html
+form.row(materialize, (ngSubmit)="login()", [formGroup]="loginForm")
+  .col.s12
+    .input-field.col.s12.m12.l10.xl8.offset-l1.offset-xl2
+      input.validate#email(type="email", formControlName="email", [ngClass]="loginForm.get('email').invalid && loginForm.get('email').touched ? 'invalid' : ''")
+      label(for="email") Email
+    .input-field.col.s12.l8.offset-l2
+      input.validate#password(type="password", formControlName="password", [ngClass]="loginForm.get('password').invalid && loginForm.get('password').touched ? 'invalid' : ''")
+      label(for="password") Wachtwoord
+    .col.s12.m12.l10.xl8.offset-l1.offset-xl2
+      p.col.s8
+        input.filled-in#keeploggedin(type="checkbox", formControlName="keepLoggedIn")
+        label(for="keeploggedin") Ingelogd blijven
+      .col.s4
+        button.btn.waves-effect.waves-light(type="submit", [disabled]="loginForm.invalid") Inloggen

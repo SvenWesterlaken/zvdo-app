@@ -1,0 +1,78 @@
+@import '../../../node_modules/@angular/material/theming';
+
+$black-contrast-87: rgba(#161925, 0.87);
+$white-contrast: #eff1ed;
+$white-contrast-87: rgba($white-contrast, 0.87);
+
+$mat-primary: (
+  50: #FCF8E7,
+  100: #F6EAb9,
+  200: #F0DC8B,
+  300: #EBCE5C,
+  400: #E5C02E,
+  500: #E0B300,
+  600: #B89300,
+  700: #8F7200,
+  800: #665200,
+  900: #3e3100,
+  A100: #FFE78B,
+  A200: #FFDE5C,
+  A400: #FFCC00,
+  A700: #745D00,
+    contrast: (
+      50: $black-contrast-87,
+      100: $black-contrast-87,
+      200: $black-contrast-87,
+      300: $black-contrast-87,
+      400: $black-contrast-87,
+      500: $white-contrast,
+      600: $white-contrast,
+      700: $white-contrast-87,
+      800: $white-contrast-87,
+      900: $white-contrast-87,
+      A100: $black-contrast-87,
+      A200: $black-contrast-87,
+      A400: $white-contrast,
+      A700: $white-contrast,
+  )
+);
+
+$mat-accent: (
+  50: #E7F4F6,
+  100: #B9E0E5,
+  200: #8BCCD5,
+  300: #5DBBC4,
+  400: #2Fa4B3,
+  500: #0190A3,
+  600: #017686,
+  700: #015C68,
+  800: #01424B,
+  900: #01282D,
+  A100: #8BE1ED,
+  A200: #5CD6E6,
+  A400: #00BFD8,
+  A700: #007A8A,
+  contrast: (
+    50: $black-contrast-87,
+    100: $black-contrast-87,
+    200: $black-contrast-87,
+    300: $black-contrast-87,
+    400: $black-contrast-87,
+    500: $white-contrast,
+    600: $white-contrast,
+    700: $white-contrast-87,
+    800: $white-contrast-87,
+    900: $white-contrast-87,
+    A100: $black-contrast-87,
+    A200: $black-contrast-87,
+    A400: $white-contrast,
+    A700: $white-contrast,
+  )
+);
+
+@include mat-core();
+
+$light-app-theme: mat-light-theme(mat-palette($mat-primary), mat-palette($mat-accent), mat-palette($mat-red));
+
+@include angular-material-theme($light-app-theme);
+

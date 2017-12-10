@@ -16,6 +16,7 @@ db.start();
 app.use(middleware.protectionHeaders);
 app.use(middleware.preflightHandler);
 
+
 app.set('SECRET_KEY', config.secretkey);
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));

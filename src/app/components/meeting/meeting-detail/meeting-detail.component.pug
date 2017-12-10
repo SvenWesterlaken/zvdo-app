@@ -1,0 +1,20 @@
+ng-template([ngIf]="!meeting")
+  p Loading...
+
+
+ng-template([ngIf]="meeting")
+  .container
+    .section
+      h2 {{ meeting.title }}
+      h5 {{ meeting.date | amDateFormat: 'dddd D MMMM, YYYY'}}
+
+    .divider
+    .section
+      h3 Programma
+
+      ul.collection
+        li.collection-item(*ngFor="let event of meeting.schedule.events")
+          b {{ event.heat }}
+          span.right {{ event.stroke }} ({{ event.gender === 'Male' ? 'M' : 'F' }})
+
+

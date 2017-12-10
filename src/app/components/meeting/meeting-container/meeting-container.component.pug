@@ -1,0 +1,13 @@
+doctype html
+.row.section
+  .col.s4
+    ng-template([ngIf]="auth.isAdmin()")
+      .col.s12
+        button.btn.btn-full-width.z-depth-1.waves-effect.waves-light(type="button", routerLink="aanmaken")
+          mat-icon(svgIcon="calendar-plus")
+          span Evenement toevoegen
+
+    app-meeting-list
+
+  .col.s8
+    router-outlet
