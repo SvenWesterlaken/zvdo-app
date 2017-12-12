@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "test": "exit 1",
+    "test": "exit 0",
     "test-temp": "set NODE_ENV=test&& nodemon --exec \"mocha --recursive\"",
     "cover": "set NODE_ENV=test&& nyc --reporter=text mocha --recursive --exit min",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"

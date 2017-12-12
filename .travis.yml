@@ -4,6 +4,8 @@ branches:
 matrix:
   include:
     - language: node_js
+      node_js:
+        - "stable"
 
       after_succes:
         - mv src\environments\environment.ts src\environments\environment.temp.ts
