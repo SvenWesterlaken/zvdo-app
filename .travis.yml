@@ -3,7 +3,6 @@ branches:
 
 matrix:
   include:
-    - os: windows
     - language: node_js
       node_js:
         - "stable"
@@ -15,10 +14,7 @@ matrix:
       #   - cd ../..
 
       script:
-        - npm run build
-
-      after_success:
-        - cd ./dist
+        - cd ./dist        
 
       deploy:
         skip_cleanup: true
