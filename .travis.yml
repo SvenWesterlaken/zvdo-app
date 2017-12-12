@@ -5,14 +5,12 @@ matrix:
   include:
     - language: node_js
       node_js:
-        - "stable"
+        - "stable"       
 
-      after_succes:
+      before_deploy:
         - mv src\environments\environment.ts src\environments\environment.temp.ts
         - mv src\environments\environment.prod.ts src\environments\environment.ts
         - npm run build
-
-      before_deploy:
         - cd ./dist
 
       deploy:
