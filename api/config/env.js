@@ -7,7 +7,7 @@ const env = {
 }
 
 env.mongo = {
-  host: process.env.MONGO_HOST || '127.0.0.1',
+  host: process.env.MONGO_HOST || 'mongodb://127.0.0.1',
   database: process.env.MONGO_DB || 'zvdo74',
   test: process.env.MONGO_TEST || 'zvdo74-test',
   options: {
@@ -21,8 +21,7 @@ env.mongo = {
 env.neo4j = {
   username: process.env.NEO_USER || 'neo4j',
   password: process.env.NEO_PASS || 'admin',
-  url: process.env.NEO_URL || 'bolt://127.0.0.1',
-  port: process.env.NEO_PORT || '7687'
+  url: process.env.NEO_URL || 'bolt://127.0.0.1:7687'
 }
 
 module.exports = env;
