@@ -8,8 +8,10 @@ matrix:
         - "stable"
 
       before_deploy:
-        - mv src/environments/environment.ts src/environments/environment.temp.ts
-        - mv src/environments/environment.prod.ts src/environments/environment.ts
+        - cd ./src/environments
+        - mv environment.ts environment.temp.ts
+        - mv environment.prod.ts environment.ts
+        - cd ../..
         - npm run build
         - cd ./dist
 
