@@ -1,7 +1,6 @@
 {
   "name": "zvdo74-angular",
   "version": "1.0.0",
-  "main": "app.js",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -12,5 +11,8 @@
     "npm": "^5.5.1"
   },
   "author": "Sven Westerlaken",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
