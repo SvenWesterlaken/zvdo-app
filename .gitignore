@@ -3,7 +3,7 @@
 ### Angular ###
 ## Angular ##
 # compiled output
-/dist
+/dist/dist
 /tmp
 /app/**/*.js
 /app/**/*.js.map
@@ -183,7 +183,7 @@ $RECYCLE.BIN/
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
+/dist/dist
 /tmp
 /out-tsc
 

@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const rxPaths = require('rxjs/_esm5/path-mapping');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
@@ -100,7 +101,7 @@ module.exports = {
     ]
   },
   "output": {
-    "path": path.join(process.cwd(), "dist"),
+    "path": path.join(process.cwd(), "dist/dist"),
     "filename": "[name].bundle.js",
     "chunkFilename": "[id].chunk.js",
     "crossOriginLoading": false
@@ -127,7 +128,7 @@ module.exports = {
       {
         test: /\.(pug|jade)$/,
         use: ['raw-loader', 'pug-html-loader']
-      },  
+      },
       {
         "test": /\.(jpg|png|webp|gif|otf|ttf|woff|woff2|ani)$/,
         "loader": "url-loader",
@@ -482,6 +483,10 @@ module.exports = {
       "tsConfigPath": "src\\tsconfig.app.json",
       "skipCodeGeneration": true,
       "compilerOptions": {}
+    }),
+    new ProvidePlugin({
+      "window.jQuery": "jquery",
+      Hammer: "hammerjs/hammer"
     })
   ],
   "node": {

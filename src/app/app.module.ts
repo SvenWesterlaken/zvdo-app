@@ -20,6 +20,15 @@ import { MatIconModule, MatIconRegistry, MatButtonModule } from '@angular/materi
 import { MeetingItemComponent } from './components/meeting/meeting-list/meeting-item/meeting-item.component';
 import { MeetingCreateComponent } from './components/meeting/meeting-create/meeting-create.component';
 import { MeetingContainerComponent } from './components/meeting/meeting-container/meeting-container.component';
+import {SharedModule} from "./modules/shared.module";
+import { MeetingEditComponent } from './components/meeting/meeting-edit/meeting-edit.component';
+import { PoolContainerComponent } from './components/pool/pool-container/pool-container.component';
+import { PoolCreateComponent } from './components/pool/pool-create/pool-create.component';
+import { PoolDetailComponent } from './components/pool/pool-detail/pool-detail.component';
+import { PoolEditComponent } from './components/pool/pool-edit/pool-edit.component';
+import { PoolListComponent } from './components/pool/pool-list/pool-list.component';
+import { PoolItemComponent } from './components/pool/pool-list/pool-item/pool-item.component';
+import {PoolModule} from "./modules/pool.module";
 
 
 @NgModule({
@@ -32,14 +41,14 @@ import { MeetingContainerComponent } from './components/meeting/meeting-containe
     RegisterComponent
   ],
   imports: [
-    MaterializeModule,
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
     InnerModule,
-    MatIconModule
+    MatIconModule,
+    SharedModule
   ],
   providers: [
     AuthService

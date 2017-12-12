@@ -7,7 +7,6 @@ import {UserComponent} from "../components/user/user.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'zwembaden', component: PoolComponent },
   { path: 'profiel', component: UserComponent }
 ];
 

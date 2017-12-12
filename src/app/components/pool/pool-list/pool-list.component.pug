@@ -1,0 +1,9 @@
+.col.s12
+  .section
+    ng-template([ngIf]="hasPools()")
+      .collection.z-depth-1
+        app-pool-item(*ngFor="let pool of pools", [pool]="pool")
+
+    ng-template([ngIf]="!hasPools()")
+      .collection.z-depth-1
+        .collection-item Er zijn geen zwembaden gevonden

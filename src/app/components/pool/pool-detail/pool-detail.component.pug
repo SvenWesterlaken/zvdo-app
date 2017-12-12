@@ -1,0 +1,23 @@
+ng-template([ngIf]="!pool")
+  p Loading...
+
+ng-template([ngIf]="pool")
+  .container
+    .section
+      a.btn.btn-danger.waves-effect.waves-light((click)="removePool(pool._id)") Verwijderen
+      a.btn.waves-effect.waves-light.right(routerLink="bewerken") Bewerken
+    .divider
+    .section
+      h2 {{ pool.name }}
+    .divider
+    .section
+      .row
+        .col.s12
+          h4 Adres
+        .col.s12
+          span {{ pool.address.street }} {{ pool.address.number }}{{ pool.address.suffix }}
+        .col.s12
+          span {{ pool.address.postal_code }} {{ pool.address.city }}, {{ pool.address.country }}
+
+
+

@@ -1,1 +1,61 @@
-p create works!
+doctype html
+.container
+  .section
+    h3 Nieuwe wedstrijd aanmaken
+  .divider
+  .section
+  form([formGroup]="newMeetingForm", (ngSubmit)="newMeeting()")
+    .row
+      .input-field.col.s12
+        input#title.validate(formControlName="title", type="text")
+        label(for="title") Evenementnaam
+      .input-field.col.s12.m6
+        input#date(formControlName="date", type="text", materialize="pickadate", [materializeParams]="[{ selectMonths: true, selectYears: 6, today: 'Vandaag', clear: 'Leegmaken' }]")
+        label(for="date") Datum
+      .input-field.col.s12.m6
+        input#time(formControlName="time", type="text", materialize="pickatime", [materializeParams]="[{ twelvehour: false, cleartext: 'Leegmaken', canceltext: 'Annuleren', default: 'now'}]")
+        label(for="time") Tijd
+    .divider
+    .section
+      span zwembad --TODO
+
+    .divider
+    .section(formArrayName="events")
+      .row(*ngFor="let event of newMeetingForm.get('events').controls; let i = index;", [formGroupName]="i")
+        .input-field.col.s1
+          input#heat.center-align(formControlName="heat")
+        .input-field.col.s3
+          select#length(formControlName="length", materialize="material_select")
+            option(value="25") 25m
+            option(value="50") 50m
+            option(value="100") 100m
+            option(value="200") 200m
+            option(value="400") 400m
+            option(value="800") 800m
+            option(value="1500") 1500m
+        .input-field.col.s5
+          select#stroke(formControlName="stroke", materialize="material_select")
+            option(value="vlinderslag") Vlinderslag
+            option(value="vrijeslag") Vrijeslag
+            option(value="schoolslag") Schoolslag
+            option(value="rugslag") Rugslag
+            option(value="wisselslag") Wisselslag
+        .input-field.col.s2
+          select#gender(formControlName="gender", materialize="material_select")
+            option(value="male") Mannen
+            option(value="female") Vrouwen
+        .col.s1
+          button.col.s12.form-btn.btn-flat.waves-effect.waves-danger((click)="removeEvent(i)", type="button"): mat-icon(svgIcon="close")
+
+      .row
+        .col.s12
+          button.btn-flat.waves-effect.waves-primary((click)="addEvent()", type="button")
+            mat-icon(svgIcon="plus")
+            span Programma toevoegen
+
+    .divider
+    .section
+      .col.s12
+        a.btn.waves-effect.waves-light.btn-danger(routerLink="..") Annuleren
+        button.btn.waves-effect.waves-light.right(type="submit", [disabled]="newMeetingForm.invalid") Opslaan
+

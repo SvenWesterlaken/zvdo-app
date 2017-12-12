@@ -1,6 +1,6 @@
 doctype html
 .row.section
-  .col.s4
+  .col.s12.m4
     ng-template([ngIf]="auth.isAdmin()")
       .col.s12
         button.btn.btn-full-width.z-depth-1.waves-effect.waves-light(type="button", routerLink="aanmaken")
@@ -9,5 +9,5 @@ doctype html
 
     app-meeting-list
 
-  .col.s8
+  .col.s12.m8
     router-outlet

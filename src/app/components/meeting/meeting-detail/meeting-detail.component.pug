@@ -5,6 +5,10 @@ ng-template([ngIf]="!meeting")
 ng-template([ngIf]="meeting")
   .container
     .section
+      a.btn.btn-danger.waves-effect.waves-light((click)="removeMeeting(meeting._id)") Verwijderen
+      a.btn.waves-effect.waves-light.right(routerLink="bewerken") Bewerken
+    .divider
+    .section
       h2 {{ meeting.title }}
       h5 {{ meeting.date | amDateFormat: 'dddd D MMMM, YYYY'}}
 
@@ -15,6 +19,6 @@ ng-template([ngIf]="meeting")
       ul.collection
         li.collection-item(*ngFor="let event of meeting.schedule.events")
           b {{ event.heat }}
-          span.right {{ event.stroke }} ({{ event.gender === 'Male' ? 'M' : 'F' }})
+          span.right {{ event.length }}m {{ event.stroke }} ({{ event.gender === 'male' ? 'M' : 'F' }})
 
 

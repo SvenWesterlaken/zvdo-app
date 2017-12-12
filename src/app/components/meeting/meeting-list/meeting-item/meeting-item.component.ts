@@ -6,12 +6,6 @@ import {Meeting} from '../../../../models/meeting';
   templateUrl: './meeting-item.component.pug',
   styleUrls: ['./meeting-item.component.sass']
 })
-export class MeetingItemComponent implements OnInit {
+export class MeetingItemComponent {
   @Input() meeting: Meeting;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

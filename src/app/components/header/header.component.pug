@@ -5,12 +5,13 @@ nav
 
     ul.right.hide-on-med-and-down
       li(routerLinkActive="active"): a(routerLink="/wedstrijden") Wedstrijden
-      li: a Zwembaden
+      li: a(routerLink="/zwembaden") Zwembaden
       li: a Profiel
       li.active: a(disabled="disabled") Welkom {{ auth.getUser() }}
       li: a((click)="auth.logout()") Uitloggen
 
     ul.side-nav#side-nav-menu
       li: a(routerLink="/wedstrijden") Wedstrijden
-      li: a(href="#") Zwembaden
+      li: a(routerLink="/zwembaden") Zwembaden
       li: a(href="#") Profiel
+      li: a((click)="auth.logout()") Uitloggen

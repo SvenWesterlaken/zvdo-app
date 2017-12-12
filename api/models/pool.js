@@ -11,10 +11,13 @@ const AddressSchema = new Schema({
     required: true
   },
   suffix: {
+    type: String
+  },
+  postal_code: {
     type: String,
     required: true
   },
-  postal_code: {
+  city: {
     type: String,
     required: true
   },

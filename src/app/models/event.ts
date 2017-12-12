@@ -1,5 +1,6 @@
 export class Event {
   private _heat: number;
+  private _length: number;
   private _stroke: string;
   private _gender: string;
   private _min_category: number;
@@ -14,6 +15,14 @@ export class Event {
     this._heat = value;
   }
 
+  get length(): number {
+    return this._length;
+  }
+
+  set length(value: number) {
+    this._length = value;
+  }
+
   get stroke(): string {
     return this._stroke;
   }
@@ -23,7 +32,7 @@ export class Event {
   }
 
   get gender(): string {
-    return this._gender === 'Male' ? 'M' : 'F';
+    return this._gender;
   }
 
   set gender(value: string) {

@@ -4,9 +4,11 @@ import {MeetingComponent} from '../components/meeting/meeting.component';
 import {MeetingDetailComponent} from '../components/meeting/meeting-detail/meeting-detail.component';
 import {MeetingCreateComponent} from "../components/meeting/meeting-create/meeting-create.component";
 import {MeetingContainerComponent} from "../components/meeting/meeting-container/meeting-container.component";
+import {MeetingEditComponent} from "../components/meeting/meeting-edit/meeting-edit.component";
 
 const routes: Routes = [
   { path: 'wedstrijden/aanmaken', component: MeetingCreateComponent },
+  { path: 'wedstrijden/:id/bewerken', component: MeetingEditComponent },
   { path: 'wedstrijden', component: MeetingContainerComponent, children: [
     { path: ':id', component: MeetingDetailComponent }
   ]}

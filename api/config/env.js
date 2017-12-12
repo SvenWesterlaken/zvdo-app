@@ -2,7 +2,7 @@
 
 const env = {
   port: process.env.PORT || 8080,
-  allowOrigin: process.env.ALLOW_ORIGIN || 'http://localhost:4200',
+  allowOrigin: process.env.ALLOW_ORIGIN || '*',
   secretkey: process.env.DB_SECRET_KEY || "secretkeytestdata-app-510783"
 }
 

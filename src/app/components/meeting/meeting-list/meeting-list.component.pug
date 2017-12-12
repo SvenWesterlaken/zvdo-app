@@ -1,4 +1,8 @@
 .col.s12
   .section
-    .collection.z-depth-1
-      app-meeting-item(*ngFor="let meeting of meetings", [meeting]="meeting")
+    ng-template([ngIf]="hasMeetings()")
+      .collection.z-depth-1
+        app-meeting-item(*ngFor="let meeting of meetings", [meeting]="meeting")
+    ng-template([ngIf]="!hasMeetings()")
+      .collection.z-depth-1
+       .collection-item Er zijn geen evenementen gevonden

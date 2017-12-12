@@ -6,6 +6,10 @@ const EventSchema = new Schema({
     type: Number,
     required: true
   },
+  length: {
+    type: Number,
+    required: true
+  },
   stroke: {
     type: String,
     required: true

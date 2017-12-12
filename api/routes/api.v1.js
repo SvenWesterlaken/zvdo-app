@@ -24,10 +24,10 @@ router.use(rights.coach);
 
 router.post('/meeting', meeting.create);
 router.put('/meeting', meeting.update);
-router.delete('/meeting/:id', meeting.update);
+router.delete('/meeting/:id', meeting.delete);
 
 router.post('/pool', pool.create);
 router.put('/pool', pool.update);
-router.delete('/pool/:id', pool.update);
+router.delete('/pool/:id', pool.delete);
 
 module.exports = router;

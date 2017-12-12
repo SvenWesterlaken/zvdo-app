@@ -35,6 +35,17 @@ body
     display: inline-block
     transform: translateY(-7px)
 
+.btn-flat
+  &:focus
+    background: none
+
+  mat-icon
+    margin: 6px 8px
+
+  span
+    display: inline-block
+    transform: translateY(-7px)
+
 button.mat-menu-item
   line-height: 24px !important
 
@@ -44,5 +55,21 @@ a.mat-menu-item > mat-icon
 .mat-icon svg
   height: 24px
   width: 24px
+
+.waves-effect.waves-primary .waves-ripple
+  background-color: rgba($munsellblue, 0.65)
+
+.waves-effect.waves-danger .waves-ripple
+  background-color: rgba($tartorange, 0.65)
+
+.btn-danger
+  background-color: $tartorange
+
+  &:hover
+    background-color: #FE6A6A
+
+
+.form-btn
+
 
 

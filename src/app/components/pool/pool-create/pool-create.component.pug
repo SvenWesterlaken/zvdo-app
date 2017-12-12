@@ -1,0 +1,37 @@
+doctype html
+.container
+  .section
+    h3 Nieuw zwembad aanmaken
+  .divider
+  .section
+  form([formGroup]="newPoolForm", (ngSubmit)="newPool()")
+    .row
+      .input-field.col.s12
+        input#name.validate(formControlName="name", type="text")
+        label(for="name") Naam
+    .divider
+    .section(formGroupName="address")
+      .row
+        .input-field.col.s8.l10
+          input#street.validate(formControlName="street", type="text")
+          label(for="street") Straat
+        .input-field.col.s2.l1
+          input#number.validate(formControlName="number", type="text")
+          label(for="number") Nr.
+        .input-field.col.s2.l1
+          input#suffix.validate(formControlName="suffix", type="text")
+          label(for="suffix") Toev.
+
+      .row
+        .input-field.col.s12.m6.l4
+          input#postalcode.validate(formControlName="postal_code", type="text")
+          label(for="postalcode") Postcode
+        .input-field.col.s12.m6.l8
+          input#city.validate(formControlName="city", type="text")
+          label(for="city") Plaats
+
+    .divider
+    .section
+      .col.s12
+        a.btn.btn-danger.waves-effect.waves-light(routerLink="..") Annuleren
+        button.btn.waves-effect.waves-light.right(type="submit", [disabled]="newPoolForm.invalid") Opslaan

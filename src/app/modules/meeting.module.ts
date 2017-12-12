@@ -8,6 +8,8 @@ import {SharedModule} from "./shared.module";
 import {MeetingItemComponent} from "../components/meeting/meeting-list/meeting-item/meeting-item.component";
 import {MeetingContainerComponent} from "../components/meeting/meeting-container/meeting-container.component";
 import {MeetingCreateComponent} from "../components/meeting/meeting-create/meeting-create.component";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MeetingEditComponent} from "../components/meeting/meeting-edit/meeting-edit.component";
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import {MeetingCreateComponent} from "../components/meeting/meeting-create/meeti
     MeetingDetailComponent,
     MeetingItemComponent,
     MeetingCreateComponent,
-    MeetingContainerComponent
+    MeetingContainerComponent,
+    MeetingEditComponent
   ],
   imports: [
     SharedModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class MeetingModule { }
