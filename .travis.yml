@@ -1,21 +1,46 @@
 branches:
   - master
 
-language: node_js
+matrix:
+  include:
+    - language: node_js
 
-node_js:
-  - "stable"
+      after_succes:
+        - mv src\environments\environment.ts src\environments\environment.temp.ts
+        - mv src\environments\environment.prod.ts src\environments\environment.ts
+        - npm run build
 
-services:
-  - mongodb
-  - neo4j
+      before_deploy:
+        - cd ./dist
 
-before_install:
-  - cd ./api
+      deploy:
+        skip_cleanup: true
+        provider: heroku
+        api_key:
+          secure: 901bd999-6462-47eb-8b0e-d396dee67b94
+        app: zvdo74-test-angular
 
-before_script:
-  - sleep 15
+    - language: node_js
 
-after_succes:
-  - npm run cover
-  - npm run coveralls
+      node_js:
+        - "stable"
+
+      # services:
+      #   - mongodb
+      #   - neo4j
+
+      before_install:
+        - cd ./api
+
+      # before_script:
+      #   - sleep 15
+
+      # after_succes:
+      #   - npm run cover
+      #   - npm run coveralls
+
+      deploy:
+        provider: heroku
+        api_key:
+          secure: 901bd999-6462-47eb-8b0e-d396dee67b94
+        app: zvdo74-test-api
