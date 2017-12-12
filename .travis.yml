@@ -7,12 +7,16 @@ matrix:
       node_js:
         - "stable"
 
-      before_deploy:
+      before_script:
         - cd ./src/environments
         - mv environment.ts environment.temp.ts
         - mv environment.prod.ts environment.ts
         - cd ../..
+
+      script:
         - npm run build
+
+      after_success:
         - cd ./dist
 
       deploy:
