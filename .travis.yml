@@ -3,6 +3,7 @@ branches:
 
 matrix:
   include:
+    - os: windows
     - language: node_js
       node_js:
         - "stable"
