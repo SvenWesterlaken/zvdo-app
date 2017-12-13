@@ -62,7 +62,13 @@ module.exports = {
       res.status(400).json({error: "Meeting ID not provided"});
     }
 
+  },
+
+  attend() {
+    
   }
+
+
 
 
 
