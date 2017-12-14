@@ -43,15 +43,12 @@ export class MeetingCreateComponent implements OnInit {
 
     this.poolService.getArray().subscribe((pools: Pool[]) => {
       this.pools = pools;
-      console.log(pools);
     });
 
   }
 
   newMeeting() {
     const values = this.newMeetingForm.value;
-
-    console.log(values);
 
     const meeting = {
       title: values.title,
