@@ -883,13 +883,11 @@ var MeetingCreateComponent = (function () {
         });
         this.poolService.getArray().subscribe(function (pools) {
             _this.pools = pools;
-            console.log(pools);
         });
     };
     MeetingCreateComponent.prototype.newMeeting = function () {
         var _this = this;
         var values = this.newMeetingForm.value;
-        console.log(values);
         var meeting = {
             title: values.title,
             date: new Date(values.date + " " + values.time),
