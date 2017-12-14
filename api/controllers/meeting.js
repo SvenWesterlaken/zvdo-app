@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const neo4j = require('../db/neo4j');
 const Meeting = require('../models/meeting');
 const _ = require('lodash');
 
@@ -9,7 +10,7 @@ module.exports = {
     if(id === '') {
       Meeting.find({}).catch(err => next(err)).then(meetings => res.send(meetings));
     } else {
-      Meeting.findById(id).catch(err => next(err)).then(meeting => res.send(meeting));
+      Meeting.findById(id).populate('pool').catch(err => next(err)).then(meeting => res.send(meeting));
     }
   },
 
@@ -26,7 +27,12 @@ module.exports = {
         } else {
           let meeting = new Meeting(req.body);
           meeting.save().catch(err => next(err)).then(() =>
-            res.status(201).json({ msg: "Meeting succesfully created"})
+            neo4j.run('CREATE (meeting:Meeting {id: {id}}) RETURN meeting', { id: meeting._id.toString() })
+            .catch(err => next(err)).then((result) => {
+              res.status(201).json({ msg: "Meeting succesfully created"});
+              neo4j.close();
+            })
+
           );
         }
       });
@@ -64,8 +70,42 @@ module.exports = {
 
   },
 
-  attend() {
-    
+  attend(req, res, next) {
+
+    const meeting_id = req.params.id;
+    const heats = req.body.heats;
+    const user_id = req.user._id;
+
+    let query = `MATCH (u:User {id: '${user_id}' }), (m:Meeting {id: '${meeting_id}'})`
+
+    heats.forEach((heat, i) => {
+      query += ` MERGE (u)-[:SWIMS {heat: ${heat}}]->(m)`;
+    });
+
+    query += ';'
+
+    neo4j.run(query, {}).catch(err => next(err)).then((result) => {
+      res.status(200).json({msg: 'Relationships succesfully created'});
+      neo4j.close();
+    });
+
+  },
+
+  entries(req, res, next) {
+
+    const user_id = req.user._id;
+    const meeting_id = req.params.id
+
+    neo4j.run('MATCH (u:User {id: {user_id}})-[r:SWIMS]->(m:Meeting {id: {meeting_id}}) RETURN DISTINCT r;', { user_id: user_id.toString(), meeting_id: meeting_id.toString() }).catch(err => next(err)).then((result) => {
+
+      let entries = result.records.map((record) => {
+        return record.get('r').properties.heat.toNumber();
+      });
+
+      neo4j.close();
+      res.status(200).json({ heats: entries });
+    });
+
   }
 
 

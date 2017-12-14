@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MeetingService} from '../../../services/meeting.service';
 import {Meeting} from '../../../models/meeting';
 import * as moment from 'moment';
+import {PoolService} from "../../../services/pool.service";
+import {Pool} from "../../../models/pool";
 
 @Component({
   selector: 'app-meeting-edit',
@@ -12,9 +14,10 @@ import * as moment from 'moment';
 })
 export class MeetingEditComponent implements OnInit {
   editMeetingForm: FormGroup;
+  pools: Pool[];
   private eventSize;
 
-  constructor(private meetingService: MeetingService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private meetingService: MeetingService, private router: Router, private route: ActivatedRoute, private poolService: PoolService) { }
 
   ngOnInit() {
     this.editMeetingForm = new FormGroup({
@@ -22,7 +25,12 @@ export class MeetingEditComponent implements OnInit {
       'title': new FormControl(null, Validators.required),
       'date': new FormControl(null, Validators.required),
       'time': new FormControl(null),
+      'pool': new FormControl(null),
       'events': new FormArray([])
+    });
+
+    this.poolService.getArray().subscribe((pools: Pool[]) => {
+      this.pools = pools;
     });
 
     this.meetingService.get(this.route.snapshot.params['id']).then((meeting: Meeting) => {
@@ -31,11 +39,12 @@ export class MeetingEditComponent implements OnInit {
 
       this.eventSize = events.length;
 
-      this.editMeetingForm.setValue({
+      this.editMeetingForm.patchValue({
         _id: meeting._id,
         title: meeting.title,
         date: dateParsed.format('D MMMM, YYYY'),
         time: dateParsed.format('HH:mm'),
+        pool: meeting.pool._id,
         events: []
       });
 

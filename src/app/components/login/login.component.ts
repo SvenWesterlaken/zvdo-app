@@ -4,8 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.pug',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.pug'
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;

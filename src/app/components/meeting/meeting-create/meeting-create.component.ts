@@ -5,6 +5,9 @@ import { Event } from '../../../models/event';
 import {Schedule} from '../../../models/schedule';
 import {MeetingService} from '../../../services/meeting.service';
 import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
+import {Pool} from "../../../models/pool";
+import {PoolService} from "../../../services/pool.service";
+import {MatSelectModule} from "@angular/material";
 
 @Component({
   selector: 'app-meeting-create',
@@ -13,9 +16,10 @@ import {ActivatedRoute, Router, RouterLinkActive} from '@angular/router';
 })
 export class MeetingCreateComponent implements OnInit {
   newMeetingForm: FormGroup;
+  pools: Pool[];
   private eventSize;
 
-  constructor(private meetingService: MeetingService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private meetingService: MeetingService, private router: Router, private route: ActivatedRoute, private poolService: PoolService) { }
 
   ngOnInit() {
     this.eventSize = 1;
@@ -24,6 +28,7 @@ export class MeetingCreateComponent implements OnInit {
       'title': new FormControl(null, Validators.required),
       'date': new FormControl(null, Validators.required),
       'time': new FormControl(null),
+      'pool': new FormControl(null),
       'events': new FormArray([
         new FormGroup({
           'heat': new FormControl(this.eventSize, Validators.required),
@@ -36,14 +41,22 @@ export class MeetingCreateComponent implements OnInit {
       ])
     });
 
+    this.poolService.getArray().subscribe((pools: Pool[]) => {
+      this.pools = pools;
+      console.log(pools);
+    });
+
   }
 
   newMeeting() {
     const values = this.newMeetingForm.value;
 
+    console.log(values);
+
     const meeting = {
       title: values.title,
       date: new Date(`${values.date} ${values.time}`),
+      pool: values.pool,
       schedule: {
         events: values.events
       }

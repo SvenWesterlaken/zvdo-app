@@ -1,13 +1,12 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {HomeComponent} from '../components/home/home.component';
-import {MeetingComponent} from "../components/meeting/meeting.component";
-import {PoolComponent} from "../components/pool/pool.component";
-import {UserComponent} from "../components/user/user.component";
+import {InnerComponent} from "../components/inner/inner.component";
+import {AppComponent} from "../app.component";
+import {LoginComponent} from "../components/login/login.component";
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'profiel', component: UserComponent }
+  { path: '', component: HomeComponent }
 ];
 
 @NgModule({

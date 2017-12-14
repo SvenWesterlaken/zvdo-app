@@ -17,8 +17,10 @@ doctype html
         label(for="time") Tijd
     .divider
     .section
-      span zwembad --TODO
-
+      .row
+        mat-form-field.col.s12
+          mat-select#pool(formControlName="pool", placeholder="Kies een zwembad", floatLabel="never")
+            mat-option(*ngFor="let pool of pools", [value]="pool._id") {{pool.name}}
     .divider
     .section(formArrayName="events")
       .row(*ngFor="let event of newMeetingForm.get('events').controls; let i = index;", [formGroupName]="i")
@@ -26,6 +28,7 @@ doctype html
           input#heat.center-align(formControlName="heat")
         .input-field.col.s3
           select#length(formControlName="length", materialize="material_select")
+            option(value="", disabled) Afstand
             option(value="25") 25m
             option(value="50") 50m
             option(value="100") 100m
@@ -35,6 +38,7 @@ doctype html
             option(value="1500") 1500m
         .input-field.col.s5
           select#stroke(formControlName="stroke", materialize="material_select")
+            option(value="", disabled) Slag
             option(value="vlinderslag") Vlinderslag
             option(value="vrijeslag") Vrijeslag
             option(value="schoolslag") Schoolslag
@@ -42,6 +46,7 @@ doctype html
             option(value="wisselslag") Wisselslag
         .input-field.col.s2
           select#gender(formControlName="gender", materialize="material_select")
+            option(value="", disabled) Geslacht
             option(value="male") Mannen
             option(value="female") Vrouwen
         .col.s1

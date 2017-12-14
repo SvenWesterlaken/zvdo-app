@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PoolService} from '../../../services/pool.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Pool} from '../../../models/pool';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-pool-edit',
   templateUrl: './pool-edit.component.pug'
 })
-export class PoolEditComponent implements OnInit {
+export class PoolEditComponent implements OnInit, OnDestroy {
   private editPoolForm: FormGroup;
+  private sub: Subscription;
 
   constructor(private poolService: PoolService, private router: Router, private route: ActivatedRoute) { }
 
@@ -39,9 +41,18 @@ export class PoolEditComponent implements OnInit {
   }
 
   updatePool() {
-    this.poolService.update(this.editPoolForm.value).subscribe(() => {
+    this.sub = this.poolService.update(this.editPoolForm.value).subscribe(() => {
       this.router.navigate(['../'], { relativeTo: this.route });
     }, (err) => console.log(err));
   }
+
+  ngOnDestroy() {
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+
+  }
+
+
 
 }

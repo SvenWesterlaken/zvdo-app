@@ -1,0 +1,60 @@
+doctype html
+.container
+  .section
+    .row
+      .col.s12
+        h4 Profiel wijzigen
+  .divider
+  .section
+    .row
+      .col.s12
+        form([formGroup]="editUserForm", (ngSubmit)="updateUser()")
+          .section
+            .row
+              .col.s12
+                h6 Account informatie
+              .input-field.col.s12
+                input#email.validate(formControlName="email", type="text")
+                label(for="email") Email
+          .divider
+          .section
+            .row
+              .col.s12
+                h6 Persoonlijke informatie
+              .input-field.col.s12
+                input#firstname.validate(formControlName="firstname", type="text")
+                label(for="firstname", [ngClass]="editUserForm.get('firstname') ? 'active' : ''") Voornaam
+              .input-field.col.s12
+                input#lastname.validate(formControlName="lastname", type="text")
+                label(for="lastname") Achternaam
+              .input-field.col.s12
+                input#birth.validate(formControlName="birth", type="text", materialize="pickadate", [materializeParams]="[{ selectMonths: true, selectYears: 6, today: 'Vandaag', clear: 'Leegmaken' }]")
+                label(for="birth") Geboortedatum
+              mat-form-field(color="accent").col.s12
+                mat-select#gender(formControlName="gender", placeholder="Geslacht")
+                  mat-option(value="male") Man
+                  mat-option(value="female") Vrouw
+          .divider
+          .section
+            .row
+              .col.s12
+                h6 Biografie
+              mat-form-field(color="accent", hintLabel="Ondersteund markdown").col.s12
+                textarea([(ngModel)]="userDescription", matInput, matTextareaAutosize, placeholder="Beschrijving", formControlName="description")
+            .row
+              .col.s12
+                h6 Voorbeeld
+              .col.s12
+                markdown([data]="userDescription", *ngIf="userDescription")
+                p(*ngIf="!userDescription"): i Beschrijving is leeg
+          .divider
+          .section
+            .row
+              .col.s12
+                a.btn.waves-effect.waves-light.btn-danger(routerLink="..") Annuleren
+                button.btn.waves-effect.waves-light.right(type="submit", [disabled]="editUserForm.invalid") Opslaan
+
+
+
+
+

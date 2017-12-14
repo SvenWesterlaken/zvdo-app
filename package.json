@@ -27,6 +27,7 @@
     "@angular/router": "^5.0.0",
     "@types/lodash": "^4.14.88",
     "angular2-jwt-session": "^0.1.2",
+    "angular2-markdown": "^2.2.2",
     "angular2-materialize": "^15.1.10",
     "angular2-moment": "^1.7.0",
     "core-js": "^2.4.1",

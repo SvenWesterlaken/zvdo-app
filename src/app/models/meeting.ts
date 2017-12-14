@@ -1,10 +1,12 @@
 import {Schedule} from './schedule';
+import {Pool} from "./pool";
 
 export class Meeting {
   _id: string;
   private _title: string;
   private _date: Date;
   private _schedule: Schedule;
+  private _pool: Pool;
   private _events_pdf: string;
   private _results: string;
 
@@ -30,6 +32,14 @@ export class Meeting {
 
   set schedule(value: Schedule) {
     this._schedule = value;
+  }
+
+  get pool(): Pool {
+    return this._pool;
+  }
+
+  set pool(value: Pool) {
+    this._pool = value;
   }
 
   get events_pdf(): string {

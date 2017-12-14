@@ -32,7 +32,7 @@ session.run('MATCH (n:Stroke) RETURN count(n);', {})
 .catch(err => console.log(err)).then((result) => {
   session.close();
 
-  if (result.records[0] != 22) {
+  if (result.records[0]._fields[0].low < 22) {
     session.run(query, {}).then((result) => {
       session.close()
       console.log('Strokes updated');

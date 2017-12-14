@@ -17,6 +17,8 @@ router.put('/user', user.update);
 router.delete('/user/:id', user.delete);
 
 router.get('/meeting/:id?', meeting.read);
+router.post('/meeting/:id/attend', meeting.attend);
+router.get('/meeting/:id/entries', meeting.entries);
 
 router.get('/pool/:id?', pool.read);
 
@@ -25,6 +27,7 @@ router.use(rights.coach);
 router.post('/meeting', meeting.create);
 router.put('/meeting', meeting.update);
 router.delete('/meeting/:id', meeting.delete);
+
 
 router.post('/pool', pool.create);
 router.put('/pool', pool.update);

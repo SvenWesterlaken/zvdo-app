@@ -1,0 +1,16 @@
+doctype html
+.container
+  .section
+    .row
+      .col.s12
+        h3(*ngIf="!meeting") Inschrijven
+        h3(*ngIf="meeting") Inschrijven {{ meeting.title }}
+  .divider
+  .section(*ngIf="meeting")
+    mat-selection-list(#heats)
+      mat-list-option(*ngFor="let event of meeting.schedule.events") ({{ event.heat }})  {{ event.length }}m {{ event.stroke }}
+  .divider
+  .section
+    .row
+      .col.s12
+        button.btn.waves-effect.waves-light((click)="attend()") Inschrijven

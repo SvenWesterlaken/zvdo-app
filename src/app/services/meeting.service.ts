@@ -1,9 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Meeting} from '../models/meeting';
-import {ApiService} from "./api.service";
-import {Observable} from "rxjs/Observable";
+import {ApiService} from './api.service';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class MeetingService implements ApiService {
@@ -30,6 +30,14 @@ export class MeetingService implements ApiService {
 
   remove(id: string): Observable<any> {
     return this.http.delete(`${environment.api.url}/meeting/${id}`);
+  }
+
+  attend(id: string, events: { heats: [number] }): Observable<any> {
+    return this.http.post(`${environment.api.url}/meeting/${id}/attend`, events);
+  }
+
+  entries(id: string): Promise<void | [number]> {
+    return this.http.get(`${environment.api.url}/meeting/${id}/entries`).toPromise().then((entries: { heats: [number] }) => entries.heats, err => console.log(err));
   }
 
 }

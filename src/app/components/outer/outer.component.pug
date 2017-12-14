@@ -1,13 +1,13 @@
 .row
   .col.s12
     .flex-hz-center
-      .col.s12.m8.l6.xl4
+      .col.s12.m10.xl8
         .card
           .card-tabs
             ul.tabs.tabs-fixed-width(materialize="tabs")
-              li.tab: a(href="#login") Login
-              li.tab: a(href="#register") Register
+              li.tab: a(routerLink="", fragment="inloggen") Inloggen
+              li.tab: a(routerLink="", fragment="registreren") Registreren
 
           .card-content
-            app-login#login
-            app-register#register
+            app-login#inloggen
+            app-register#registreren

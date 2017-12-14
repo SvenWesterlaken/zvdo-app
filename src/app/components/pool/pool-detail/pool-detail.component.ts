@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Pool} from '../../../models/pool';
 import {Subscription} from 'rxjs/Subscription';
 import {PoolService} from '../../../services/pool.service';
@@ -8,7 +8,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
   selector: 'app-pool-detail',
   templateUrl: './pool-detail.component.pug'
 })
-export class PoolDetailComponent implements OnInit {
+export class PoolDetailComponent implements OnInit, OnDestroy {
   private pool: Pool;
   private sub: Subscription;
 
@@ -28,5 +28,11 @@ export class PoolDetailComponent implements OnInit {
       this.router.navigate(['..'], { relativeTo: this.route });
     });
   }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+  }
+
+
 
 }

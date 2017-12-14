@@ -21,7 +21,7 @@ export class AuthService {
     return this.getToken() != null;
   }
 
-  register(user: User) {
+  register(user) {
     return this.http.post(`${environment.api.url}/register`, user);
   }
 

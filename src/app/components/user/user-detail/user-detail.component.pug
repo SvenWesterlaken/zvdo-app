@@ -1,0 +1,53 @@
+doctype html
+.container
+  .section
+    .row
+      .col.s12
+        h4 Profiel
+  .divider
+  .section(*ngIf="user")
+    .row(*ngIf="user.is_admin || user.is_coach")
+      .col.s12
+        span.new.badge.blue.left(*ngIf="user.is_admin", data-badge-caption="Admin")
+        span.new.badge.orange.left(*ngIf="user.is_coach", data-badge-caption="Coach")
+    .row
+      .col.s12
+        mat-list(role="list")
+          mat-divider
+          h3(mat-subheader) Account informatie
+          mat-list-item
+            mat-icon(matListIcon, svgIcon="email")
+            h4(mat-line) Email
+            p(mat-line) {{ user.email }}
+          mat-divider
+          h3(mat-subheader) Persoonlijke informatie
+          mat-list-item
+            mat-icon(matListIcon, svgIcon="account")
+            h4(mat-line) Voornaam
+            p(mat-line) {{ user.firstname }}
+          mat-list-item
+            mat-icon(matListIcon, svgIcon="label")
+            h4(mat-line) Achternaam
+            p(mat-line) {{ user.lastname }}
+          mat-list-item
+            mat-icon(matListIcon, svgIcon="calendar-text")
+            h4(mat-line) Geboortedatum
+            p(mat-line) {{ user.birth | amDateFormat: 'D MMMM, YYYY' }}
+          mat-list-item
+            mat-icon(matListIcon, svgIcon="gender-male")
+            h4(mat-line) Geslacht
+            p(mat-line) {{ user.gender == 'male' ? 'Man' : 'Vrouw' }}
+          mat-divider
+          h3(mat-subheader) Biografie
+          .mat-list-item-description
+            mat-icon.left(matListIcon, svgIcon="notebook")
+            .description-content.left
+              h4 Beschrijving
+              p.content: markdown(*ngIf="user.description", [data]="user.description")
+              p(*ngIf="!user.description"): i Je hebt geen beschrijving van jezelf ingevuld.
+          mat-divider
+    .row
+      .col.s12
+        .col.s12
+          button.btn.waves-effect.waves-light(routerLink="wijzigen") Profiel wijzigen
+

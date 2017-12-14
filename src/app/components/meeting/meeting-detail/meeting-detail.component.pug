@@ -14,11 +14,27 @@ ng-template([ngIf]="meeting")
 
     .divider
     .section
-      h3 Programma
-
-      ul.collection
-        li.collection-item(*ngFor="let event of meeting.schedule.events")
-          b {{ event.heat }}
-          span.right {{ event.length }}m {{ event.stroke }} ({{ event.gender === 'male' ? 'M' : 'F' }})
+      .row
+        .col.s12
+          h5 {{ meeting.pool.name }}
+        .col.s12
+          span {{ meeting.pool.address.street }} {{ meeting.pool.address.number }}{{ meeting.pool.address.suffix }}
+        .col.s12
+          span {{ meeting.pool.address.postal_code }} {{ meeting.pool.address.city }}, {{ meeting.pool.address.country }}
+    .divider
+    .section
+      .row
+        .col.s12
+          ul.collection.with-header
+            li.collection-header: h4 Programma
+            ng-container(*ifEmptyArray="entries")
+              li.collection-item(*ngFor="let event of meeting.schedule.events; let i = index", [ngClass]="hasEntry(i) ? 'active' : ''")
+                b {{ event.heat }}
+                span.right {{ event.length }}m {{ event.stroke }} ({{ event.gender === 'male' ? 'M' : 'F' }})
+    .divider
+    .section
+      .row
+        .col.s12
+          a.btn.waves-effect.waves-light(routerLink="inschrijven") Inschrijven
 
 

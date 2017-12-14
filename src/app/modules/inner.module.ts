@@ -12,24 +12,38 @@ import 'moment/min/locales';
 import {PoolRoutingModule} from '../routes/pool.routing.module';
 import {PoolModule} from './pool.module';
 import {PoolService} from '../services/pool.service';
+import {UserModule} from "./user.module";
+import {UserRoutingModule} from "../routes/user.routing.module";
+import {UserService} from "../services/user.service";
+import {HeaderComponent} from "../components/header/header.component";
+import {MatIconModule} from "@angular/material";
+import {InnerComponent} from "../components/inner/inner.component";
 
 moment.locale('nl-nl');
 
 @NgModule({
   declarations: [
-    UserComponent,
-    HomeComponent
+    InnerComponent,
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     SharedModule,
     MeetingModule,
     PoolModule,
+    UserModule,
     MeetingRoutingModule,
-    PoolRoutingModule
+    PoolRoutingModule,
+    UserRoutingModule,
+    MatIconModule
+  ],
+  exports: [
+    InnerComponent
   ],
   providers: [
     MeetingService,
     PoolService,
+    UserService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })

@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router, RouterLinkActive} from '@angular/router'
 import {MeetingService} from '../../../services/meeting.service';
 import {Meeting} from '../../../models/meeting';
 import {Subscription} from 'rxjs/Subscription';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-meeting-detail',
@@ -11,6 +12,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class MeetingDetailComponent implements OnInit, OnDestroy {
   private meeting: Meeting;
   private sub: Subscription;
+  private entries: [number];
 
   constructor(private meetingService: MeetingService, private route: ActivatedRoute, private router: Router) { }
 
@@ -19,6 +21,10 @@ export class MeetingDetailComponent implements OnInit, OnDestroy {
       const id = params['id'];
       this.meetingService.get(id).then((meeting: Meeting) => {
         this.meeting = meeting;
+      });
+
+      this.meetingService.entries(id).then((heats: [number]) => {
+        this.entries = heats;
       });
     });
 
@@ -32,6 +38,10 @@ export class MeetingDetailComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  hasEntry(i: number): boolean {
+    return _.includes(this.entries, i+1);
   }
 
 }

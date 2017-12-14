@@ -1,0 +1,42 @@
+doctype html
+.row
+  .col.s12
+    mat-horizontal-stepper([linear]="true")
+      mat-step([stepControl]="registerFormCredentials", label="Accountgegevens")
+        form([formGroup]="registerFormCredentials")
+          .input-field.col.s12
+            input#email(formControlName="email", type="email")
+            label(for="email") Email
+          .input-field.col.s12
+            input#password(formControlName="password", type="password")
+            label(for="password") Wachtwoord
+          .col.s12
+            button.btn-flat.right.waves-effect.waves-primary(matStepperNext) Volgende
+
+      mat-step([stepControl]="registerFormName", label="Naam")
+        form([formGroup]="registerFormName")
+          .input-field.col.s12
+            input#firstname(formControlName="firstname", type="text")
+            label(for="firstname") Voornaam
+          .input-field.col.s12
+            input#lastname(formControlName="lastname", type="text")
+            label(for="lastname") Achternaam
+          .col.s12
+            button.btn-flat.left.waves-effect.waves-primary(matStepperPrevious) Vorige
+            button.btn-flat.right.waves-effect.waves-primary(matStepperNext) Volgende
+
+      mat-step([stepControl]="registerFormOther", label="Persoonlijke gegevens")
+        form([formGroup]="registerFormOther")
+          mat-form-field(color="accent").col.s12
+            mat-select#gender(formControlName="gender", placeholder="Geslacht")
+              mat-option(value="male") Man
+              mat-option(value="female") Vrouw
+          .input-field.col.s12
+            input#birth(formControlName="birth", type="text", materialize="pickadate", [materializeParams]="[{ selectMonths: true, selectYears: 18, today: 'Vandaag', clear: 'Leegmaken', max: true }]")
+            label(for="birth") Geboortedatum
+          .col.s12
+            button.btn-flat.left.waves-effect.waves-primary(matStepperPrevious) Vorige
+            button.btn-flat.right.waves-effect.waves-primary((click)="register()") Registreren
+
+
+

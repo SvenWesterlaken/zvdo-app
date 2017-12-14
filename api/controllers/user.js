@@ -17,14 +17,21 @@ module.exports = {
     } else {
       User.findOne({ email: body.email }).catch(err => next(err)).then((user) => {
         if(!user) {
-          let user = new User(body);
-          user.save().catch(err => next(err)).then((user) => {
-            neo4j.run('CREATE (user:User {id: {id}}) RETURN user', { id: user._id.toString() })
-            .catch(err => next(err)).then((result) => {
-              res.status(201).json({ msg: "User succesfully created"});
-              neo4j.close();
-            })
-          });
+
+
+          bcrypt.hash(body.password, 8).catch((err) => next(err)).then((hash) => {
+            let user = body;
+            user.password = hash;
+            return new User(user);
+          }).then((user) => {
+            user.save().catch(err => next(err)).then((user) => {
+              neo4j.run('CREATE (user:User {id: {id}}) RETURN user', { id: user._id.toString() })
+              .catch(err => next(err)).then((result) => {
+                res.status(201).json({ msg: "User succesfully created"});
+                neo4j.close();
+              })
+            });
+          });         
         } else {
           res.status(409).json({ error: "User already exists"});
         }
