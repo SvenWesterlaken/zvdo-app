@@ -11,6 +11,7 @@ import {MeetingCreateComponent} from "../components/meeting/meeting-create/meeti
 import {ReactiveFormsModule} from "@angular/forms";
 import {MeetingEditComponent} from "../components/meeting/meeting-edit/meeting-edit.component";
 import {MeetingAttendComponent} from "../components/meeting/meeting-attend/meeting-attend.component";
+import {IfEmptyArrayDirective} from "../directives/array.directive";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,9 @@ import {MeetingAttendComponent} from "../components/meeting/meeting-attend/meeti
     MatListModule,
     ReactiveFormsModule,
     MatSelectModule
+  ],
+  providers: [
+    IfEmptyArrayDirective
   ]
 })
 export class MeetingModule { }

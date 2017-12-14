@@ -27,7 +27,7 @@ ng-template([ngIf]="meeting")
         .col.s12
           ul.collection.with-header
             li.collection-header: h4 Programma
-            ng-container(*ifEmptyArray="entries")
+            ng-container(*ngIf="entries")
               li.collection-item(*ngFor="let event of meeting.schedule.events; let i = index", [ngClass]="hasEntry(i) ? 'active' : ''")
                 b {{ event.heat }}
                 span.right {{ event.length }}m {{ event.stroke }} ({{ event.gender === 'male' ? 'M' : 'F' }})
