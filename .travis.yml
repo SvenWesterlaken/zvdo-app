@@ -14,7 +14,7 @@ matrix:
         - cd ../..
 
       script:
-        - npm build
+        - npm run build
 
       after_succes:
         - cd ./dist
